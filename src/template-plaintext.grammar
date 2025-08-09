@@ -1,0 +1,44 @@
+@top TemplatePlaintextText { text }
+
+// The whole document is a sequence of Plaintext chunks and Variables
+text { (Plaintext | Variable)* }
+
+Variable[isolate] { variable }
+
+@tokens {
+  // Plain text: anything that's not the start of a variable "{{", with
+  // support for escaping braces/backslash so you can write literal
+  //   \  -> \\
+  //   \{ -> {
+  //   \} -> }
+  //   \{\{ -> literal "{{" (won't start a variable)
+  //   \}\} -> literal "}}"
+  // We purposefully DON'T try to specially treat unescaped "{{" — that
+  // sequence is always the start of a variable unless both braces are
+  // individually escaped.
+  Plaintext {
+    (
+      '\\' $[{\\}]        // escaped brace or backslash
+      | '{' ![{]          // lone '{' not followed by another '{'
+      | '}'               // lone '}'
+      | ![{}\\]           // any other char except braces/backslash
+    )+
+  }
+
+  // Single Variable token with its own internal escape handling and
+  // allowance for lone braces/backslashes inside.
+  variable {
+    '{{'
+    (
+      '\\' $[{\\}]          // escaped brace or backslash
+      | '{' ![{]            // lone '{' not starting nested "{{"
+      | '}' ![}]            // lone '}' not closing the variable
+      | ![{}\\]             // any other char except braces/backslash
+    )*
+    '}}'
+  }
+}
+
+@external propSource templatePlaintextHighlighting from "./highlight"
+
+@detectDelim

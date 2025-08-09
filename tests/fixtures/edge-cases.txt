@@ -1,0 +1,15 @@
+# Edge cases - these may intentionally produce errors or odd trees
+# Unclosed variable start
+{{unclosed
+# Lone closing braces
+}}}}
+# Nested like pattern (should treat inner as text/individual chars)
+{{outer {{inner}} still in outer}}
+# Escaped sequence that almost looks like variable
+\{{notAVariable}}
+# Backslash at end of variable body
+{{endsWithEscape\\}}
+# Many braces
+{{a{b}c{d}e}}
+# Empty then text
+{{}}text

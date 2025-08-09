@@ -1,0 +1,8 @@
+# Escapes inside variable bodies and plaintext
+{{\{}}
+{{\}}}
+{{\{\}}}
+Plain \{ brace and variable {{x\{y\}}}
+Plain backslash \\ then variable {{path\\to\\file}}
+Sequence {{l\{m\}r}}
+Text with escaped braces \{a\} and escaped sequence \{\{ still no variable

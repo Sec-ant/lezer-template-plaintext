@@ -1,0 +1,9 @@
+# Mixed plaintext and variables
+Hello {{name}}
+{{greet}}, World!
+Start{{var}}End
+{{a}}{{b}}{{c}}
+One {{first}} middle {{second}} end
+Curly { before {{var}} after }
+Escaped open \{ then variable {{v}} then escaped close \}
+Literal \{\{ not variable then {{real}} done

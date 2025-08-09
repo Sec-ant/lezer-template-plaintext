@@ -1,0 +1,7 @@
+# Pure plaintext samples
+hello
+Hello World
+Curly braces: { } single
+Triple braces but no variable: { { {  still text
+Escaped braces via backslash: \{ \} \{\{ \}\}
+Multiple lines are separate cases so each line minimal

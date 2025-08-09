@@ -1,0 +1,10 @@
+# Single variable bodies
+{{name}}
+{{UserName}}
+{{user_name}}
+{{user_name_123}}
+{{}}
+{{a}}
+{{_leadingUnderscore}}
+{{with\{escaped\}}}
+{{endsWithBackslash\\}}
